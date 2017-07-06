@@ -1,10 +1,13 @@
 require 'sinatra'
 require 'sinatra/activerecord'
-require 'sqlite3' # ??
 require 'sinatra/flash'
 
 configure :development, :test do
+  require 'sqlite3' # ??
   set :database, {adapter: 'sqlite3', database: 'db/microblog.db'}
+end
+configure :production do
+  require 'pg'
 end
 
 enable :sessions
